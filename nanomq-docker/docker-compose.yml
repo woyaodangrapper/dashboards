@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  nanomq:
+    image: emqx/nanomq:latest
+    container_name: nanomq
+    environment:
+      # 启用 HTTP 管理/监控接口（默认端口 8081）
+      - NANOMQ_HTTP_SERVER_ENABLE=true
+      - NANOMQ_HTTP_SERVER_PORT=8081
+      - NANOMQ_HTTP_SERVER_USERNAME=admin
+      - NANOMQ_HTTP_SERVER_PASSWORD=public
+      # （可选）调整 MQTT 监听端口、规则引擎配置等
+      #- NANOMQ_LISTENER__TCP__DEFAULT=1883
+    ports:
+      - "1883:1883"    # MQTT 协议端口
+      - "8081:8081"    # HTTP 管理/监控端口
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=30d      # 数据保存 30 天，适合长期趋势分析
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+    depends_on:
+      - nanomq
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      # 默认管理员账号
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=public
+      # 自动添加 Prometheus 数据源
+      - GF_PROVISIONING_PATH=/etc/grafana/provisioning
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/mqtt-nanomq-overview.json
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/:ro
+      - ./data/grafana:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana-storage:
+
+networks:
+  monitoring:
+    driver: bridge
