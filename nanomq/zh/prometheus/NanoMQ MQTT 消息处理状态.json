@@ -1,0 +1,107 @@
+{
+  "id": 1,
+  "type": "stat",
+  "title": "消息处理状态",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 10,
+    "w": 11
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "fieldMinMax": false
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.5.2",
+  "targets": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "refId": "A",
+      "editorMode": "builder",
+      "expr": "nanomq_messages_received",
+      "legendFormat": "接收消息数",
+      "range": true,
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "B",
+      "expr": "nanomq_messages_sent",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "发送消息数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "C",
+      "expr": "nanomq_messages_dropped",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "丢弃消息数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+  ],
+  "datasource": {
+    "type": "prometheus",
+    "uid": "PBFA97CFB590B2093"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "horizontal",
+    "textMode": "auto",
+    "wideLayout": true,
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "showPercentChange": false,
+    "percentChangeColorMode": "standard"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": 5,
+  "type": "histogram",
+  "title": "抓取与指标采集性能",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 8,
+    "w": 12
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "lineWidth": 1,
+        "fillOpacity": 80,
+        "gradientMode": "none",
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.5.2",
+  "targets": [
+    {
+      "refId": "A",
+      "expr": "scrape_duration_seconds",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "抓取耗时（秒）",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "B",
+      "expr": "scrape_samples_scraped",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": true,
+      "editorMode": "builder",
+      "legendFormat": "抓取样本数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "C",
+      "expr": "scrape_samples_post_metric_relabeling",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": true,
+      "editorMode": "builder",
+      "legendFormat": "Relabel后样本数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "D",
+      "expr": "scrape_series_added",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": true,
+      "editorMode": "builder",
+      "legendFormat": "新增序列数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+  ],
+  "datasource": {
+    "uid": "PBFA97CFB590B2093",
+    "type": "prometheus"
+  },
+  "options": {
+    "tooltip": {
+      "mode": "single",
+      "sort": "none",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

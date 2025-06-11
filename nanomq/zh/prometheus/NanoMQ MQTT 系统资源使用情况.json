@@ -1,0 +1,153 @@
+{
+  "id": 3,
+  "type": "gauge",
+  "title": "系统资源使用情况",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 8,
+    "w": 24
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "当前内存使用"
+        },
+        "properties": [
+          {
+            "id": "unit",
+            "value": "bytes"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "最大内存使用"
+        },
+        "properties": [
+          {
+            "id": "unit",
+            "value": "bytes"
+          }
+        ]
+      }
+    ]
+  },
+  "pluginVersion": "11.5.2",
+  "targets": [
+    {
+      "refId": "A",
+      "editorMode": "builder",
+      "expr": "nanomq_cpu_usage",
+      "legendFormat": "当前CPU使用率",
+      "range": true,
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "B",
+      "expr": "nanomq_cpu_usage_max",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "最大CPU使用率",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "C",
+      "expr": "",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false
+    },
+    {
+      "refId": "D",
+      "expr": "nanomq_memory_usage",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "当前内存使用",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "E",
+      "expr": "nanomq_memory_usage_max",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "最大内存使用",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+  ],
+  "datasource": {
+    "uid": "PBFA97CFB590B2093",
+    "type": "prometheus"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "showThresholdLabels": false,
+    "showThresholdMarkers": true,
+    "sizing": "auto",
+    "minVizWidth": 75,
+    "minVizHeight": 75
+  }
+}

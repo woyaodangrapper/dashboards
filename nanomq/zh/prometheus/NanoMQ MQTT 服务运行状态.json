@@ -1,0 +1,88 @@
+{
+  "id": 6,
+  "type": "stat",
+  "title": "服务运行状态",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 8,
+    "w": 12
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [
+        {
+          "type": "value",
+          "options": {
+            "0": {
+              "text": "异常",
+              "index": 0
+            },
+            "1": {
+              "text": "正常",
+              "index": 1
+            }
+          }
+        }
+      ],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "dark-orange",
+            "value": 0
+          },
+          {
+            "color": "dark-green",
+            "value": 1
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.5.2",
+  "targets": [
+    {
+      "disableTextWrap": false,
+      "editorMode": "builder",
+      "expr": "up",
+      "fullMetaSearch": false,
+      "includeNullMetadata": true,
+      "legendFormat": "状态",
+      "range": true,
+      "refId": "A",
+      "useBackend": false
+    }
+  ],
+  "datasource": {
+    "uid": "PBFA97CFB590B2093"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "textMode": "auto",
+    "wideLayout": true,
+    "colorMode": "value",
+    "graphMode": "area",
+    "justifyMode": "auto",
+    "showPercentChange": false,
+    "percentChangeColorMode": "standard",
+    "text": {
+      "percentSize": 3
+    }
+  }
+}

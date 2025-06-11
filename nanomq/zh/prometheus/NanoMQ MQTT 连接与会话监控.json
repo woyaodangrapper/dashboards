@@ -1,0 +1,129 @@
+{
+  "id": 2,
+  "type": "state-timeline",
+  "title": "连接与会话监控",
+  "gridPos": {
+    "x": 11,
+    "y": 0,
+    "h": 10,
+    "w": 13
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "lineWidth": 0,
+        "fillOpacity": 70,
+        "spanNulls": false,
+        "insertNulls": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        }
+      },
+      "color": {
+        "mode": "thresholds"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.5.2",
+  "targets": [
+    {
+      "refId": "A",
+      "editorMode": "builder",
+      "expr": "nanomq_connections_count",
+      "legendFormat": "当前连接数",
+      "range": true,
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "B",
+      "expr": "nanomq_connections_max",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "最大连接数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "C",
+      "expr": "nanomq_sessions_count",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "当前会话数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    },
+    {
+      "refId": "D",
+      "expr": "nanomq_sessions_max",
+      "range": true,
+      "instant": false,
+      "datasource": {
+        "uid": "PBFA97CFB590B2093",
+        "type": "prometheus"
+      },
+      "hide": false,
+      "editorMode": "builder",
+      "legendFormat": "最大会话数",
+      "useBackend": false,
+      "disableTextWrap": false,
+      "fullMetaSearch": false,
+      "includeNullMetadata": true
+    }
+  ],
+  "datasource": {
+    "uid": "PBFA97CFB590B2093",
+    "type": "prometheus"
+  },
+  "options": {
+    "mergeValues": true,
+    "showValue": "auto",
+    "alignValue": "left",
+    "rowHeight": 0.9,
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom"
+    },
+    "tooltip": {
+      "mode": "single",
+      "sort": "none",
+      "hideZeros": false
+    }
+  }
+}
